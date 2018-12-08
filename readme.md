@@ -13,6 +13,7 @@ return [
   "\\App\\middlewares\\response\\MiddlewareJsonResponse",
 ];
 
+?>
 ```
 
 Para obter os mapas o seguinte método deve ser utilizado:
