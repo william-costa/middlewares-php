@@ -1,4 +1,10 @@
 <?php
+/**
+ * Middleware de validação do corpo da requisição
+ * Responsável por validar os campos obrigatórios e formato dos dados enviados no corpo da requisição
+ *
+ * @author William Costa
+ */
 
 namespace App\middlewares\request;
 
@@ -7,6 +13,13 @@ use App\interfaces\RequestInterface;
 
 class MiddlewareRequestBodyValidation implements MiddlewareInterface{
 
+  /**
+   * Métod responsável por executar as ações do middleware
+   * @method process
+   * @param  RequestInterface    $request
+   * @param  MiddlewareInterface $delegate
+   * @return mixed
+   */
   public function process(RequestInterface $request, MiddlewareInterface $delegate){
     $body = $request->getBody();
     $camposObrigatorios = [
