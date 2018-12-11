@@ -1,6 +1,6 @@
-# Implementation of middleware without frameworks in PHP
+# Middlewares sem Framework PHP
 
-Implementação básica de Middlewares em PHP sem a utilização de frameworks e seguindo a PSR-15. 
+Implementação básica de Middlewares em PHP sem a utilização de frameworks e seguindo a PSR-15.
 
 Exemplo didático criado para o 2º WapSchool DEV (Dez/2018)
 
