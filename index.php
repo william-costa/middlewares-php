@@ -4,15 +4,22 @@ ini_set("display_errors",true);
 
 include __DIR__.'/vendor/autoload.php';
 
-$successHandler = new App\Http\Requests\SuccessRequestHandler();
+use App\Http\Requests\SuccessRequestHandler;
+use App\Http\Requests\QueueRequestHandler;
+use App\Http\Middlewares\HttpMethodMiddleware;
+use App\Http\Middlewares\AuthorizationMiddleware;
+use App\Http\Middlewares\BodyParamsMiddleware;
+use App\Http\Requests\ServerRequestFactory;
 
-$app = new App\Http\Requests\QueueRequestHandler($successHandler);
+//HANDLER DE SUCESSO (RESPONSE)
+$successHandler = new SuccessRequestHandler();
 
-$app->add(new App\Http\Middlewares\HttpMethodMiddleware('POST'))
-    ->add(new App\Http\Middlewares\AuthorizationMiddleware())
-    ->add(new App\Http\Middlewares\BodyParamsMiddleware([
-                                                          'nome'=>'string',
-                                                          'valor'=>'numeric'
-                                                        ]));
-
-echo $app->handle(App\Http\Requests\ServerRequestFactory::createServerRequestFromGlobals());
+//MIDDLEWARES
+$app = (new QueueRequestHandler($successHandler))->add(new HttpMethodMiddleware('POST'))
+                                                 ->add(new AuthorizationMiddleware())
+                                                 ->add(new BodyParamsMiddleware([
+                                                                                  'nome'=>'string',
+                                                                                  'valor'=>'numeric'
+                                                                                ]));
+//RESPONSE
+echo $app->handle(ServerRequestFactory::createServerRequestFromGlobals());
