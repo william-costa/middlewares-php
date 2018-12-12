@@ -1,10 +1,10 @@
-# Middlewares sem Framework PHP
+# Middlewares sem Framework em PHP
 
 Implementação básica de Middlewares em PHP sem a utilização de frameworks e seguindo a PSR-15.
 
 Exemplo didático criado para o 2º WapSchool DEV (Dez/2018)
 
-## Teste implementado
+## Teste de requisição
 
 Neste teste foram implementados 3 middlewares:
 - **HttpMethodMiddleware**: responsável por validar o método da requisição;
