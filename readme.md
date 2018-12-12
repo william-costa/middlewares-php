@@ -1,4 +1,4 @@
-# Middlewares sem Framework em PHP
+# Middlewares em PHP
 
 Implementação básica de Middlewares em PHP sem a utilização de frameworks e seguindo a PSR-15.
 
