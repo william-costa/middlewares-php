@@ -18,6 +18,12 @@ class Response extends Message implements ResponseInterface{
    */
   private $statusCode = 200;
 
+ /**
+  * Frase do status
+  * @var string
+  */
+  private $reasonPhrase = '';
+
   /**
    * Formato de saída
    * @var string
@@ -58,12 +64,16 @@ class Response extends Message implements ResponseInterface{
   }
 
   /**
-   * Not implemented
+   * Método responsável por definir o código de status
    */
-  public function withStatus($code, $reasonPhrase = ''){}
+  public function withStatus($code, $reasonPhrase = ''){
+    $this->statusCode   = $code;
+    $this->reasonPhrase = $reasonPhrase;
+  }
 
   /**
    * Not implemented
    */
   public function getReasonPhrase(){}
 }
+

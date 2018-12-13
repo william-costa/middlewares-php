@@ -17,10 +17,11 @@ class ResponseException extends Response{
    * @param  Exception   $e
    */
   public function __construct(\Exception $e){
-    $this->statusCode = $e->getCode();
+    $this->withStatus($e->getCode());
     $this->setBody([
       'error'=>$e->getMessage()
     ]);
   }
 
 }
+
