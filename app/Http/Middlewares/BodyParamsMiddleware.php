@@ -60,13 +60,11 @@ class BodyParamsMiddleware implements MiddlewareInterface {
       }
     }
 
-    //RESPONSE
-    $response = $request->getResponseBody();
-    $response[] = [
-                    'middleware'=>'Campos obrigatórios',
-                    'sucesso'=>true
-                  ];
-    $request->setResponseBody($response);
+    //DEFINE O MIDDLEWARE ATUAL NA REQUISIÇÃO
+    $request->addMiddleware([
+                              'middleware' => 'Campos Obrigatórios',
+                              'sucesso'    => true
+                            ]);
 
     return $handler->handle($request);
   }

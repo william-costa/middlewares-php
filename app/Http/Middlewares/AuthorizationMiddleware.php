@@ -43,13 +43,11 @@ class AuthorizationMiddleware implements MiddlewareInterface {
       throw new \Exception('Acesso negado', 401);
     }
 
-    //RESPONSE
-    $response = $request->getResponseBody();
-    $response[] = [
-                    'middleware'=>'Autenticação',
-                    'sucesso'=>true
-                  ];
-    $request->setResponseBody($response);
+    //DEFINE O MIDDLEWARE ATUAL NA REQUISIÇÃO
+    $request->addMiddleware([
+                              'middleware' => 'Autenticação',
+                              'sucesso'    => true
+                            ]);
 
     return $handler->handle($request);
   }

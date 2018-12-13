@@ -26,10 +26,11 @@ class ServerRequest extends Request implements ServerRequestInterface {
   private $queryParams = [];
 
   /**
-   * Corpo da resposta -> injeção de dados entre os middlewares
+   * Define os middlewares que a requisição já passou
+   * injeção de dados entre os middlewares
    * @var array
    */
-  private $responseBody = [];
+  private $middlewares = [];
 
   /**
    * Parâmetros $_SERVER
@@ -53,21 +54,21 @@ class ServerRequest extends Request implements ServerRequestInterface {
   }
 
   /**
-   * Método responsável por retornar o corpo da resposta
-   * @method getResponseBody
+   * Método responsável por retornar os middlewares que a requisição já passou
+   * @method getMiddlewares
    * @return array
    */
-  public function getResponseBody(){
-    return $this->responseBody;
+  public function getMiddlewares(){
+    return $this->middlewares;
   }
 
   /**
-   * Método repsonsável por definir o corpo da resposta
-   * @method setResponseBody
-   * @param  array           $responseBody
+   * Método repsonsável por adicionar um middleware ao array de middleres em que a requisição passou
+   * @method addMiddleware
+   * @param  array           $middleware
    */
-  public function setResponseBody($responseBody){
-    $this->responseBody = $responseBody;
+  public function addMiddleware($middleware){
+    $this->middlewares[] = $middleware;
   }
 
   /**

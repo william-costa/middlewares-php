@@ -16,6 +16,10 @@ use Psr\Http\Message\ResponseInterface;
  */
 class HttpMethodMiddleware implements MiddlewareInterface {
 
+  /**
+   * Método HTTP
+   * @var string
+   */
   private $method;
 
   /**
@@ -42,13 +46,11 @@ class HttpMethodMiddleware implements MiddlewareInterface {
       throw new \Exception('Somente requisições '.$this->method.' são permitidas', 405);
     }
 
-    //RESPONSE
-    $response = $request->getResponseBody();
-    $response[] = [
-                    'middleware'=>'Requisição '.$this->method,
-                    'sucesso'=>true
-                  ];
-    $request->setResponseBody($response);
+    //DEFINE O MIDDLEWARE ATUAL NA REQUISIÇÃO
+    $request->addMiddleware([
+                              'middleware' => 'Requisição '.$this->method,
+                              'sucesso'    => true
+                            ]);
 
     return $handler->handle($request);
   }

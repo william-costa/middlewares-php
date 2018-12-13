@@ -21,6 +21,6 @@ class SuccessRequestHandler implements RequestHandlerInterface {
      * @return ResponseInterface
      */
     public function handle(ServerRequestInterface $request): ResponseInterface {
-      return (new Response())->setBody($request->getResponseBody());
+      return (new Response())->setBody($request->getMiddlewares());
     }
 }
